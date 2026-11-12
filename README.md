@@ -3,8 +3,6 @@
 Servidor de Minecraft com o modpack **All the Mons 1.3.0** (Cobblemon: Pokémon dentro do Minecraft) para um grupo de amigos, aceitando **Minecraft original e pirata**. Rodando num PC antigo que estava parado no quarto.
 
 **Site com o passo a passo para entrar:** https://joaoppk2.github.io/servidor-all-the-mons/
-- Tem Minecraft original: https://joaoppk2.github.io/servidor-all-the-mons/#original
-- Joga pirata: https://joaoppk2.github.io/servidor-all-the-mons/#pirata
 
 ---
 
