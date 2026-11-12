@@ -49,13 +49,6 @@ h1{font-family:var(--head);font-weight:700;font-size:clamp(34px,8vw,60px);line-h
 .lead::after{content:"▼";position:absolute;right:12px;bottom:6px;font-size:12px;color:var(--ball-red);animation:blink 1s steps(2) infinite}
 @keyframes blink{50%{opacity:0}}
 
-/* turma de Pokémon sobre a ilha */
-.party{max-width:760px;margin:6px auto 0;display:flex;flex-wrap:wrap;gap:4px 10px;align-items:flex-end}
-.party figure{margin:0;display:flex;flex-direction:column;align-items:center;gap:2px}
-.party img{width:clamp(64px,13vw,96px);height:auto;filter:drop-shadow(0 4px 0 rgba(0,0,0,.35));animation:bob 1.8s ease-in-out infinite}
-.party figure:nth-child(2n) img{animation-delay:.45s}.party figure:nth-child(3n) img{animation-delay:.9s}
-.party figcaption{font-family:var(--head);font-size:12px;background:var(--ink);color:#fff;padding:1px 6px}
-@keyframes bob{50%{transform:translateY(-5px)}}
 
 main{max-width:760px;margin:0 auto;padding-block:24px 40px;display:flex;flex-direction:column;gap:24px}
 section{background:var(--panel);padding:20px 18px;display:flex;flex-direction:column;gap:12px;
@@ -89,7 +82,7 @@ dl{margin:0;display:flex;flex-direction:column;gap:14px}
 dt{font-weight:700}
 dd{margin:2px 0 0;color:var(--ink-soft)}
 footer{max-width:760px;margin:0 auto;padding-block:0 36px;color:#fff;font-size:13px;text-shadow:1px 1px 0 #000;text-align:center}
-@media (prefers-reduced-motion: reduce){.lead::after,.party img{animation:none}}
+@media (prefers-reduced-motion: reduce){.lead::after{animation:none}}
 </style>
 </head>
 <body>
@@ -107,14 +100,6 @@ footer{max-width:760px;margin:0 auto;padding-block:0 36px;color:#fff;font-size:1
   <p class="lead">Bem-vindo, treinador! Aqui está o passo a passo para entrar no servidor, do download do modpack ao primeiro login. Vale para quem tem Minecraft original e para quem joga pirata.</p>
 </header>
 
-<div class="party" aria-label="Pokémon da primeira geração">
-  <figure><img class="pixel" src="img/pokemon/25.png" alt="Pikachu" width="96" height="96"><figcaption>Pikachu</figcaption></figure>
-  <figure><img class="pixel" src="img/pokemon/1.png" alt="Bulbasaur" width="96" height="96"><figcaption>Bulbasaur</figcaption></figure>
-  <figure><img class="pixel" src="img/pokemon/4.png" alt="Charmander" width="96" height="96"><figcaption>Charmander</figcaption></figure>
-  <figure><img class="pixel" src="img/pokemon/7.png" alt="Squirtle" width="96" height="96"><figcaption>Squirtle</figcaption></figure>
-  <figure><img class="pixel" src="img/pokemon/18.png" alt="Pidgeot" width="96" height="96"><figcaption>Pidgeot</figcaption></figure>
-  <figure><img class="pixel" src="img/pokemon/133.png" alt="Eevee" width="96" height="96"><figcaption>Eevee</figcaption></figure>
-</div>
 
 <main>
   <section aria-labelledby="s1">
