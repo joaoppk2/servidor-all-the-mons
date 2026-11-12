@@ -30,9 +30,10 @@
 html{background:var(--dusk)}
 body{margin:0;color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.55;min-height:100vh;
   padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
-.fundo{position:fixed;inset:0;z-index:-1;background:var(--dusk) url("img/fundo.jpg") center 40%/cover no-repeat}
-.fundo::after{content:"";position:absolute;inset:0;background:linear-gradient(rgba(20,18,40,.15),rgba(20,18,40,.05) 40%,rgba(20,18,40,.35))}
-@media (max-width:700px){.fundo{background-image:url("img/fundo-celular.jpg");background-position:center}}
+.fundo{position:fixed;inset:0;z-index:-1;background:var(--dusk) url("video/poster.jpg") center/cover no-repeat;overflow:hidden}
+.fundo video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.fundo::after{content:"";position:absolute;inset:0;background:linear-gradient(rgba(20,18,40,.25),rgba(20,18,40,.10) 40%,rgba(20,18,40,.40))}
+@media (prefers-reduced-motion: reduce){.fundo video{display:none}}
 
 .pixel{image-rendering:pixelated;image-rendering:crisp-edges}
 header{max-width:760px;margin:0 auto;padding-block:40px 8px;display:flex;flex-direction:column;gap:14px;align-items:flex-start}
@@ -92,7 +93,12 @@ footer{max-width:760px;margin:0 auto;padding-block:0 36px;color:#fff;font-size:1
 </style>
 </head>
 <body>
-<div class="fundo" aria-hidden="true"></div>
+<div class="fundo" aria-hidden="true">
+  <video id="video-fundo" autoplay muted loop playsinline preload="auto" poster="video/poster.jpg">
+    <source src="video/fundo-celular.mp4" type="video/mp4" media="(max-width: 700px) and (orientation: portrait)">
+    <source src="video/fundo.mp4" type="video/mp4">
+  </video>
+</div>
 
 <header>
   <div class="ball" aria-hidden="true"></div>
@@ -179,9 +185,16 @@ footer{max-width:760px;margin:0 auto;padding-block:0 36px;color:#fff;font-size:1
   </section>
 </main>
 
-<footer>Fundo: print do próprio servidor. Sprites de Pokémon © Nintendo / Game Freak, via PokeAPI. Página de fã, sem fins lucrativos.</footer>
+<footer>Fundo: gravação do próprio servidor. Sprites de Pokémon © Nintendo / Game Freak, via PokeAPI. Página de fã, sem fins lucrativos.</footer>
 
 <script>
+// alguns celulares ignoram "media" no <source>: escolhe o vídeo certo pelo tamanho da tela
+(function () {
+  var v = document.getElementById('video-fundo'); if (!v) return;
+  var celular = matchMedia('(max-width: 700px) and (orientation: portrait)').matches;
+  v.src = celular ? 'video/fundo-celular.mp4' : 'video/fundo.mp4';
+  v.play && v.play().catch(function () {});
+})();
 document.querySelectorAll('.tabs .btn').forEach(function (b) {
   b.addEventListener('click', function () {
     document.querySelectorAll('.tabs .btn').forEach(function (o) {
