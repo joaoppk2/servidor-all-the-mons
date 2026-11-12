@@ -7,20 +7,20 @@
 <meta name="description" content="Passo a passo para entrar no servidor All the Mons 1.3.0, com Minecraft original ou pirata.">
 <meta property="og:title" content="Servidor All the Mons">
 <meta property="og:description" content="Passo a passo para entrar no servidor: modpack, endereço e login.">
-<meta property="og:image" content="img/fundo-celular.jpg">
+<meta property="og:image" content="video/poster.jpg">
 <link rel="icon" href="img/pokemon/25.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@500;700&family=Nunito:wght@400;600;700&family=VT323&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@500;700&family=Nunito:wght@400;600;700;800&family=VT323&display=swap">
 <style>
-/* Fundo: print do próprio servidor (ilha flutuante no pôr do sol), fixo.
-   Conteúdo: painéis de inventário sólidos por cima, para o texto ficar legível. */
+/* Fundo: vídeo do próprio servidor, fixo. Conteúdo em painéis de inventário sólidos.
+   A escolha "original / pirata" no topo mostra só o caminho de quem escolheu. */
 :root{
   --panel:#c6c6c6; --panel-hi:#ffffff; --panel-lo:#555555; --slot:#8b8b8b;
   --ink:#1d1d1d; --ink-soft:#3a3a3a;
   --ball-red:#e3352f; --dialog:#fbfbf3; --dialog-line:#2b3a67; --grass-dark:#3f7f26;
-  --sunset:#f3b46b; --dusk:#2c2a4a;
-  --btn:#9d9d9d; --btn-hover:#6aa842;
+  --alerta:#c4211b; --alerta-bg:#fde7e5; --dica:#b07a00; --dica-bg:#fff4cf; --ok:#2f7d1f; --ok-bg:#e6f5df;
+  --dusk:#2c2a4a; --btn:#9d9d9d; --btn-hover:#6aa842;
   --head:"Pixelify Sans", "Segoe UI", system-ui, sans-serif;
   --body:"Nunito", "Segoe UI", system-ui, sans-serif;
   --mono:"VT323", "Consolas", monospace;
@@ -36,162 +36,221 @@ body{margin:0;color:var(--ink);font-family:var(--body);font-size:17px;line-heigh
 @media (prefers-reduced-motion: reduce){.fundo video{display:none}}
 
 .pixel{image-rendering:pixelated;image-rendering:crisp-edges}
-header{max-width:760px;margin:0 auto;padding-block:40px 8px;display:flex;flex-direction:column;gap:14px;align-items:flex-start}
+header,main{max-width:760px;margin:0 auto}
+header{padding-block:40px 8px;display:flex;flex-direction:column;gap:14px;align-items:flex-start}
 .ball{width:52px;height:52px;border-radius:50%;border:4px solid var(--ink);position:relative;
   background:linear-gradient(var(--ball-red) 0 44%, var(--ink) 44% 56%, #fff 56%)}
 .ball::after{content:"";position:absolute;left:50%;top:50%;width:16px;height:16px;transform:translate(-50%,-50%);
   border-radius:50%;background:#fff;border:4px solid var(--ink)}
 .tag{font-family:var(--head);font-size:14px;background:var(--ink);color:#ffe34d;padding:4px 10px;letter-spacing:.04em}
-h1{font-family:var(--head);font-weight:700;font-size:clamp(34px,8vw,60px);line-height:1.02;margin:0;color:#fff;
-  text-shadow:4px 4px 0 var(--ink);text-wrap:balance}
+h1{font-family:var(--head);font-weight:700;font-size:clamp(34px,8vw,60px);line-height:1.02;margin:0;color:#fff;text-shadow:4px 4px 0 var(--ink);text-wrap:balance}
 .lead{margin:0;max-width:60ch;background:var(--dialog);border:4px solid var(--dialog-line);border-radius:10px;
   box-shadow:inset 0 0 0 3px #fff, 0 4px 0 rgba(0,0,0,.3);padding:14px 18px;position:relative}
 .lead::after{content:"▼";position:absolute;right:12px;bottom:6px;font-size:12px;color:var(--ball-red);animation:blink 1s steps(2) infinite}
 @keyframes blink{50%{opacity:0}}
 
-
-main{max-width:760px;margin:0 auto;padding-block:24px 40px;display:flex;flex-direction:column;gap:24px}
-section{background:var(--panel);padding:20px 18px;display:flex;flex-direction:column;gap:12px;
+main{padding-block:24px 40px;display:flex;flex-direction:column;gap:24px}
+section{background:var(--panel);padding:20px 18px;display:flex;flex-direction:column;gap:14px;
   border:4px solid var(--ink);box-shadow:inset 4px 4px 0 var(--panel-hi), inset -4px -4px 0 var(--panel-lo), 0 6px 0 rgba(0,0,0,.35)}
 h2{font-family:var(--head);font-weight:700;font-size:23px;margin:0;display:flex;gap:14px;align-items:center;line-height:1.25;text-wrap:balance}
 .slot{flex:none;width:44px;height:44px;background:var(--slot);display:grid;place-items:center;
   box-shadow:inset 3px 3px 0 #373737, inset -3px -3px 0 #ffffff;font-family:var(--head);font-size:21px;color:#fff;text-shadow:2px 2px 0 #3f3f3f}
 .mini{width:56px;height:56px;flex:none;margin:-10px 0 -10px auto}
-h3{font-family:var(--head);font-size:18px;font-weight:700;margin:6px 0 0}
 p,ul,ol{margin:0}
-ul,ol{padding-left:24px;display:flex;flex-direction:column;gap:6px}
-li::marker{font-weight:700;color:var(--ink-soft)}
-.muted{color:var(--ink-soft);font-size:15.5px}
-b{font-weight:700}
-a{color:#1f4fb3}
+ol{padding-left:26px;display:flex;flex-direction:column;gap:8px}
+li::marker{font-weight:800}
+b{font-weight:800}
+a{color:#1f4fb3;font-weight:700}
 
-.btn{font-family:var(--head);font-size:15px;color:#fff;text-shadow:2px 2px 0 #3f3f3f;cursor:pointer;
+/* escolha do tipo de Minecraft */
+.escolha{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media (max-width:520px){.escolha{grid-template-columns:1fr}}
+.opcao{font-family:var(--head);font-size:20px;color:#fff;text-shadow:2px 2px 0 #3f3f3f;cursor:pointer;text-align:left;
+  background:var(--btn);border:4px solid var(--ink);padding:14px 16px;display:flex;flex-direction:column;gap:2px;
+  box-shadow:inset 4px 4px 0 #cfcfcf, inset -4px -4px 0 #5a5a5a}
+.opcao small{font-family:var(--body);font-size:14px;font-weight:600;text-shadow:none;color:#f1f1f1}
+.opcao:hover,.opcao[aria-pressed="true"]{background:var(--btn-hover)}
+.opcao:focus-visible,.btn:focus-visible{outline:3px solid #ffe34d;outline-offset:2px}
+[data-so]{display:none}
+body[data-tipo="original"] [data-so="original"],body[data-tipo="pirata"] [data-so="pirata"]{display:flex}
+.passos{display:contents}
+body:not([data-tipo]) .passos{display:none}
+
+.btn{font-family:var(--head);font-size:15px;color:#fff;text-shadow:2px 2px 0 #3f3f3f;cursor:pointer;text-decoration:none;
   background:var(--btn);border:3px solid var(--ink);padding:8px 12px;box-shadow:inset 3px 3px 0 #cfcfcf, inset -3px -3px 0 #5a5a5a}
-.btn:hover,.btn[aria-selected="true"]{background:var(--btn-hover)}
-.btn:focus-visible{outline:3px solid #ffe34d;outline-offset:2px}
-.tabs{display:flex;gap:10px;flex-wrap:wrap}
+.btn:hover{background:var(--btn-hover)}
+.btn.grande{font-size:19px;padding:12px 18px;background:var(--btn-hover);display:inline-flex;gap:10px;align-items:center;align-self:flex-start}
+.btn.grande:hover{background:#5a9636}
 .code{display:flex;align-items:center;gap:10px;background:#2b2b2b;border:3px solid var(--ink);
   box-shadow:inset 3px 3px 0 #111, inset -3px -3px 0 #4a4a4a;padding:8px 10px;min-width:0}
 .code code{font-family:var(--mono);font-size:23px;color:#7dff6b;overflow-x:auto;white-space:nowrap;flex:1;min-width:0}
 code{font-family:var(--mono);font-size:20px}
-.dialog{background:var(--dialog);border:4px solid var(--dialog-line);border-radius:10px;padding:12px 16px;box-shadow:inset 0 0 0 3px #fff}
-.dialog.warn{border-color:var(--ball-red)}
-.dialog.ok{border-color:var(--grass-dark)}
 kbd{font-family:var(--head);font-size:15px;background:var(--slot);color:#fff;padding:2px 7px;box-shadow:inset 2px 2px 0 #373737, inset -2px -2px 0 #fff}
+
+/* avisos: vermelho = atenção, amarelo = dica, verde = tudo certo */
+.aviso{display:flex;gap:12px;align-items:flex-start;border:4px solid;border-radius:10px;padding:12px 14px;font-weight:600}
+.aviso::before{flex:none;font-family:var(--head);font-size:13px;color:#fff;padding:3px 8px;margin-top:1px}
+.aviso.alerta{border-color:var(--alerta);background:var(--alerta-bg)}
+.aviso.alerta::before{content:"ATENÇÃO";background:var(--alerta)}
+.aviso.dica{border-color:var(--dica);background:var(--dica-bg)}
+.aviso.dica::before{content:"DICA";background:var(--dica)}
+.aviso.ok{border-color:var(--ok);background:var(--ok-bg)}
+.aviso.ok::before{content:"PRONTO";background:var(--ok)}
 dl{margin:0;display:flex;flex-direction:column;gap:14px}
-dt{font-weight:700}
-dd{margin:2px 0 0;color:var(--ink-soft)}
+dt{font-weight:800}
+dd{margin:2px 0 0}
 footer{max-width:760px;margin:0 auto;padding-block:0 36px;color:#fff;font-size:13px;text-shadow:1px 1px 0 #000;text-align:center}
 @media (prefers-reduced-motion: reduce){.lead::after{animation:none}}
 </style>
 </head>
 <body>
 <div class="fundo" aria-hidden="true">
-  <video id="video-fundo" autoplay muted loop playsinline preload="auto" poster="video/poster.jpg">
-    <source src="video/fundo-celular.mp4" type="video/mp4" media="(max-width: 700px) and (orientation: portrait)">
-    <source src="video/fundo.mp4" type="video/mp4">
-  </video>
+  <video id="video-fundo" autoplay muted loop playsinline preload="auto" poster="video/poster.jpg"></video>
 </div>
 
 <header>
   <div class="ball" aria-hidden="true"></div>
   <span class="tag">MINECRAFT 1.21.1 · ALL THE MONS 1.3.0</span>
   <h1>Servidor All the Mons</h1>
-  <p class="lead">Bem-vindo, treinador! Aqui está o passo a passo para entrar no servidor, do download do modpack ao primeiro login. Vale para quem tem Minecraft original e para quem joga pirata.</p>
+  <p class="lead">Bem-vindo, treinador! Aqui está tudo o que você precisa para entrar no servidor, do download do modpack ao primeiro login.</p>
 </header>
 
-
 <main>
-  <section aria-labelledby="s1">
-    <h2 id="s1"><span class="slot">1</span>Instale o modpack certo<img class="mini pixel" src="img/pokemon/1.png" alt="" width="56" height="56"></h2>
-    <div class="dialog warn">A versão precisa ser <b>All the Mons 1.3.0</b>. Com qualquer outra, o servidor não deixa você entrar.</div>
-    <div class="tabs" role="tablist" aria-label="Tipo de Minecraft">
-      <button class="btn" role="tab" id="tab-orig" aria-selected="true" aria-controls="p-orig">Tenho original</button>
-      <button class="btn" role="tab" id="tab-pir" aria-selected="false" aria-controls="p-pir">Jogo pirata</button>
-    </div>
-    <div id="p-orig" role="tabpanel" aria-labelledby="tab-orig">
-      <ol>
-        <li>Baixe e abra o <b>CurseForge</b> (<a href="https://www.curseforge.com/download/app" target="_blank" rel="noopener">curseforge.com/download/app</a>) e entre em <b>Minecraft</b>.</li>
-        <li>Na aba <b>Browse</b> (ou "Discover"), procure <b>All the Mons</b>.</li>
-        <li>Clique em <b>Install</b> e escolha a versão <b>1.3.0</b>. Se já tiver o pack: três pontinhos › <b>Change Version</b> › 1.3.0.</li>
-        <li>Clique em <b>Play</b> e entre com a sua conta Microsoft.</li>
-      </ol>
-    </div>
-    <div id="p-pir" role="tabpanel" aria-labelledby="tab-pir" hidden>
-      <ol>
-        <li>O CurseForge só abre o jogo com conta original. Use um launcher gratuito que aceite <b>conta offline</b> e instale modpacks, como o <b>SKLauncher</b>.</li>
-        <li>Crie a conta offline com o nome que você quer usar no servidor.</li>
-        <li>Na área de modpacks do launcher, procure <b>All the Mons</b> e instale a versão <b>1.3.0</b>.</li>
-        <li>Se o launcher não encontrar o pack, peça o arquivo <b>.zip</b> do modpack ao admin do servidor e importe pelo launcher.</li>
-      </ol>
-      <p class="muted">Evite o TLauncher: ele tem histórico de problemas de segurança.</p>
+  <section aria-labelledby="s0">
+    <h2 id="s0">Qual Minecraft você tem?</h2>
+    <div class="escolha">
+      <button class="opcao" data-tipo="original" aria-pressed="false">Tenho original<small>Comprei o jogo e entro com conta Microsoft</small></button>
+      <button class="opcao" data-tipo="pirata" aria-pressed="false">Jogo pirata<small>Jogo sem conta Microsoft (conta offline)</small></button>
     </div>
   </section>
 
-  <section aria-labelledby="s2">
-    <h2 id="s2"><span class="slot">2</span>Dê memória ao jogo<img class="mini pixel" src="img/pokemon/4.png" alt="" width="56" height="56"></h2>
-    <p>São mais de 400 mods. Nas configurações do launcher, reserve <b>8 GB de RAM</b> para o Minecraft (no CurseForge: Configurações › Minecraft › Java Settings › Allocated Memory). Com menos, o jogo trava ou nem abre.</p>
-    <p class="muted">A primeira abertura demora alguns minutos. É normal.</p>
+  <div class="passos">
+  <!-- PASSO 1: ORIGINAL -->
+  <section data-so="original" aria-labelledby="s1o">
+    <h2 id="s1o"><span class="slot">1</span>Instale o modpack<img class="mini pixel" src="img/pokemon/1.png" alt="" width="56" height="56"></h2>
+    <div class="aviso alerta">A versão precisa ser All the Mons 1.3.0. Com qualquer outra, o servidor não deixa você entrar.</div>
+    <ol>
+      <li>Baixe e abra o <b>CurseForge</b>: <a href="https://www.curseforge.com/download/app" target="_blank" rel="noopener">curseforge.com/download/app</a>. Escolha <b>Minecraft</b>.</li>
+      <li>Na aba <b>Browse</b> (ou "Discover"), procure <b>All the Mons</b>.</li>
+      <li>Clique em <b>Install</b> e escolha a versão <b>1.3.0</b>.</li>
+      <li>Já tem o pack instalado? Clique nos <b>três pontinhos</b> › <b>Change Version</b> › <b>1.3.0</b>.</li>
+      <li>Clique em <b>Play</b> e entre com a sua conta Microsoft.</li>
+    </ol>
   </section>
 
-  <section aria-labelledby="s3">
-    <h2 id="s3"><span class="slot">3</span>Adicione o servidor<img class="mini pixel" src="img/pokemon/7.png" alt="" width="56" height="56"></h2>
-    <p>No menu do jogo: <b>Multiplayer</b> › <b>Add Server</b> e cole o endereço:</p>
-    <div class="code"><code id="addr1">impairment-sequester.tun.ply.gg</code><button class="btn copy" data-copy="addr1">Copiar</button></div>
-    <p class="muted">Se ficar preso em "Connecting", feche o jogo, abra de novo e use o endereço com a porta:</p>
-    <div class="code"><code id="addr2">impairment-sequester.tun.ply.gg:65216</code><button class="btn copy" data-copy="addr2">Copiar</button></div>
+  <!-- PASSO 1: PIRATA -->
+  <section data-so="pirata" aria-labelledby="s1p">
+    <h2 id="s1p"><span class="slot">1</span>Instale o launcher e o modpack<img class="mini pixel" src="img/pokemon/1.png" alt="" width="56" height="56"></h2>
+    <div class="aviso alerta">Não use o TLauncher. Ele tem histórico de vírus e problemas de segurança.</div>
+    <ol>
+      <li>Baixe o <b>SKLauncher</b>, que é gratuito e aceita conta offline: <a href="https://skmedix.pl/downloads" target="_blank" rel="noopener">skmedix.pl/downloads</a>.</li>
+      <li>Abra o SKLauncher e crie uma <b>conta offline</b> com o nome que você quer usar no servidor.</li>
+      <li>Baixe o modpack oficial, na versão certa, por este botão:</li>
+    </ol>
+    <a class="btn grande" href="https://www.curseforge.com/api/v1/mods/1356598/files/8822048/download">⬇ Baixar All the Mons 1.3.0 (.zip, 83 MB)</a>
+    <ol start="4">
+      <li>No SKLauncher, vá em <b>Modpacks</b> › <b>Importar</b> (ou "Import") e escolha o arquivo <b>.zip</b> que você baixou. Não precisa descompactar.</li>
+      <li>Espere ele baixar os mods e clique em <b>Jogar</b>.</li>
+    </ol>
   </section>
 
-  <section aria-labelledby="s4">
-    <h2 id="s4"><span class="slot">4</span>Primeiro login<img class="mini pixel" src="img/pokemon/25.png" alt="" width="56" height="56"></h2>
-    <h3>Minecraft original</h3>
-    <div class="dialog ok">Você entra direto, sem senha. Boa jornada!</div>
-    <h3>Minecraft pirata</h3>
-    <p>Ao entrar, a tela fica escura e você não anda até fazer o login. Abra o chat com <kbd>T</kbd> e digite:</p>
-    <p class="muted">Na primeira vez, crie a sua senha (repita duas vezes, mínimo 6 caracteres):</p>
-    <div class="code"><code id="cmd1">/register suasenha suasenha</code><button class="btn copy" data-copy="cmd1">Copiar</button></div>
-    <p class="muted">Nas próximas vezes:</p>
-    <div class="code"><code id="cmd2">/login suasenha</code><button class="btn copy" data-copy="cmd2">Copiar</button></div>
-    <ul class="muted">
-      <li>Jogando do mesmo lugar, o servidor lembra de você por 24 horas e não pede a senha de novo.</li>
-      <li>Errou a senha 3 vezes? Fica bloqueado por 5 minutos.</li>
-      <li>Para trocar a senha dentro do jogo: <code>/auth changepassword nova nova</code></li>
-    </ul>
+  <!-- PASSO 2: MEMÓRIA -->
+  <section data-so="original" aria-labelledby="s2o">
+    <h2 id="s2o"><span class="slot">2</span>Dê memória ao jogo<img class="mini pixel" src="img/pokemon/4.png" alt="" width="56" height="56"></h2>
+    <p>São mais de 400 mods. No CurseForge, vá em <b>Configurações</b> › <b>Minecraft</b> › <b>Java Settings</b> › <b>Allocated Memory</b> e coloque <b>8 GB</b> (8192 MB).</p>
+    <div class="aviso alerta">Com menos de 8 GB, o jogo trava ou nem abre.</div>
+    <div class="aviso dica">A primeira abertura demora alguns minutos. É normal: não feche o jogo.</div>
+  </section>
+  <section data-so="pirata" aria-labelledby="s2p">
+    <h2 id="s2p"><span class="slot">2</span>Dê memória ao jogo<img class="mini pixel" src="img/pokemon/4.png" alt="" width="56" height="56"></h2>
+    <p>São mais de 400 mods. No SKLauncher, abra as <b>configurações do modpack</b> (ou as configurações gerais) e coloque a memória em <b>8 GB</b> (8192 MB).</p>
+    <div class="aviso alerta">Com menos de 8 GB, o jogo trava ou nem abre.</div>
+    <div class="aviso dica">A primeira abertura demora alguns minutos. É normal: não feche o jogo.</div>
   </section>
 
-  <section aria-labelledby="s5">
-    <h2 id="s5"><span class="slot">?</span>Deu problema?<img class="mini pixel" src="img/pokemon/143.png" alt="" width="56" height="56"></h2>
+  <!-- PASSO 3: ENDEREÇO (igual para os dois) -->
+  <section data-so="original" aria-labelledby="s3o"><h2 id="s3o"><span class="slot">3</span>Adicione o servidor<img class="mini pixel" src="img/pokemon/7.png" alt="" width="56" height="56"></h2><div class="endereco"></div></section>
+  <section data-so="pirata" aria-labelledby="s3p"><h2 id="s3p"><span class="slot">3</span>Adicione o servidor<img class="mini pixel" src="img/pokemon/7.png" alt="" width="56" height="56"></h2><div class="endereco"></div></section>
+  <template id="tpl-endereco">
+    <div style="display:flex;flex-direction:column;gap:12px">
+      <p>No menu do jogo: <b>Multiplayer</b> › <b>Add Server</b> e cole o endereço:</p>
+      <div class="code"><code>impairment-sequester.tun.ply.gg</code><button class="btn copy">Copiar</button></div>
+      <div class="aviso dica">Ficou preso em "Connecting"? Feche o jogo, abra de novo e use o endereço com a porta:</div>
+      <div class="code"><code>impairment-sequester.tun.ply.gg:65216</code><button class="btn copy">Copiar</button></div>
+    </div>
+  </template>
+
+  <!-- PASSO 4: LOGIN -->
+  <section data-so="original" aria-labelledby="s4o">
+    <h2 id="s4o"><span class="slot">4</span>Entre no servidor<img class="mini pixel" src="img/pokemon/25.png" alt="" width="56" height="56"></h2>
+    <div class="aviso ok">Com Minecraft original você entra direto, sem senha. Boa jornada!</div>
+  </section>
+  <section data-so="pirata" aria-labelledby="s4p">
+    <h2 id="s4p"><span class="slot">4</span>Crie a sua senha<img class="mini pixel" src="img/pokemon/25.png" alt="" width="56" height="56"></h2>
+    <p>Ao entrar, a tela fica escura e você não anda até fazer o login. Abra o chat com <kbd>T</kbd>.</p>
+    <p><b>Na primeira vez</b>, crie a sua senha digitando ela duas vezes (mínimo 6 caracteres):</p>
+    <div class="code"><code>/register suasenha suasenha</code><button class="btn copy">Copiar</button></div>
+    <p><b>Nas próximas vezes:</b></p>
+    <div class="code"><code>/login suasenha</code><button class="btn copy">Copiar</button></div>
+    <div class="aviso alerta">Guarde a sua senha. Errou 3 vezes? Fica bloqueado por 5 minutos.</div>
+    <div class="aviso dica">Jogando do mesmo lugar, o servidor lembra de você por 24 horas e não pede a senha de novo.</div>
+    <p>Para trocar a senha dentro do jogo: <code>/auth changepassword nova nova</code></p>
+  </section>
+
+  <!-- PROBLEMAS -->
+  <section data-so="original" aria-labelledby="s5o">
+    <h2 id="s5o"><span class="slot">?</span>Deu problema?<img class="mini pixel" src="img/pokemon/143.png" alt="" width="56" height="56"></h2>
     <dl>
-      <div><dt>"Mismatched mods" ou "Incompatible"</dt><dd>O seu modpack não está na versão 1.3.0. Volte ao passo 1 e troque a versão.</dd></div>
+      <div><dt>"Mismatched mods" ou "Incompatible"</dt><dd>O seu modpack não está na versão 1.3.0. Volte ao passo 1 e use <b>Change Version</b>.</dd></div>
       <div><dt>Parado em "Connecting to the server…"</dt><dd>Feche o jogo inteiro, abra de novo e use o endereço com <code>:65216</code>.</dd></div>
-      <div><dt>Esqueci a senha</dt><dd>Fale com o admin do servidor. Ele apaga o seu cadastro e você faz o <code>/register</code> de novo.</dd></div>
       <div><dt>Lag nos primeiros dias</dt><dd>O mapa ainda está sendo preparado. Melhora sozinho.</dd></div>
     </dl>
   </section>
+  <section data-so="pirata" aria-labelledby="s5p">
+    <h2 id="s5p"><span class="slot">?</span>Deu problema?<img class="mini pixel" src="img/pokemon/143.png" alt="" width="56" height="56"></h2>
+    <dl>
+      <div><dt>"Mismatched mods" ou "Incompatible"</dt><dd>O seu modpack não é o 1.3.0. Baixe de novo pelo botão do passo 1 e importe outra vez.</dd></div>
+      <div><dt>Parado em "Connecting to the server…"</dt><dd>Feche o jogo inteiro, abra de novo e use o endereço com <code>:65216</code>.</dd></div>
+      <div><dt>Esqueci a senha</dt><dd>Fale com o admin do servidor. Ele apaga o seu cadastro e você faz o <code>/register</code> de novo.</dd></div>
+      <div><dt>O servidor recusa o meu nome</dt><dd>Alguém com Minecraft original já usa esse nome. Crie a conta offline com outro nome.</dd></div>
+      <div><dt>Lag nos primeiros dias</dt><dd>O mapa ainda está sendo preparado. Melhora sozinho.</dd></div>
+    </dl>
+  </section>
+  </div>
 </main>
 
-<footer>Fundo: gravação do próprio servidor. Sprites de Pokémon © Nintendo / Game Freak, via PokeAPI. Página de fã, sem fins lucrativos.</footer>
+<footer>Fundo: gravação do próprio servidor. Modpack baixado direto da CurseForge. Sprites de Pokémon © Nintendo / Game Freak, via PokeAPI. Página de fã, sem fins lucrativos.</footer>
 
 <script>
-// alguns celulares ignoram "media" no <source>: escolhe o vídeo certo pelo tamanho da tela
+// vídeo certo para o tamanho da tela
 (function () {
   var v = document.getElementById('video-fundo'); if (!v) return;
   var celular = matchMedia('(max-width: 700px) and (orientation: portrait)').matches;
   v.src = celular ? 'video/fundo-celular.mp4' : 'video/fundo.mp4';
   v.play && v.play().catch(function () {});
 })();
-document.querySelectorAll('.tabs .btn').forEach(function (b) {
-  b.addEventListener('click', function () {
-    document.querySelectorAll('.tabs .btn').forEach(function (o) {
-      var on = o === b;
-      o.setAttribute('aria-selected', on ? 'true' : 'false');
-      document.getElementById(o.getAttribute('aria-controls')).hidden = !on;
-    });
-  });
+
+// bloco do endereço (igual para os dois caminhos)
+document.querySelectorAll('.endereco').forEach(function (el) {
+  el.appendChild(document.getElementById('tpl-endereco').content.cloneNode(true));
 });
+
+// escolha original/pirata; o link pode vir com #original ou #pirata
+function escolher(tipo, rolar) {
+  if (tipo !== 'original' && tipo !== 'pirata') return;
+  document.body.dataset.tipo = tipo;
+  document.querySelectorAll('.opcao').forEach(function (b) { b.setAttribute('aria-pressed', b.dataset.tipo === tipo ? 'true' : 'false'); });
+  if (location.hash !== '#' + tipo) history.replaceState(null, '', '#' + tipo);
+  if (rolar) document.querySelector('[data-so="' + tipo + '"]').scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+document.querySelectorAll('.opcao').forEach(function (b) { b.addEventListener('click', function () { escolher(b.dataset.tipo, true); }); });
+escolher(location.hash.slice(1), false);
+addEventListener('hashchange', function () { escolher(location.hash.slice(1), false); });
+
+// botões de copiar
 document.querySelectorAll('.copy').forEach(function (b) {
   b.addEventListener('click', function () {
-    var el = document.getElementById(b.dataset.copy), txt = el.textContent;
+    var el = b.parentNode.querySelector('code'), txt = el.textContent;
     function done() { b.textContent = 'Copiado!'; setTimeout(function () { b.textContent = 'Copiar'; }, 1500); }
     function fallback() { var r = document.createRange(); r.selectNodeContents(el); var s = getSelection(); s.removeAllRanges(); s.addRange(r); b.textContent = 'Ctrl+C'; }
     try { navigator.clipboard.writeText(txt).then(done, fallback); } catch (e) { fallback(); }
